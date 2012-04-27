@@ -1,7 +1,8 @@
 [user]
-	name = Matt Florence
-	email = mflorence@onetechnologies.net
+	email = thardy@onetechnologies.net
+	name = Tim Hardy
 [alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   st = status
   rmo = remote -v 
   ct = commit
@@ -16,12 +17,23 @@
   interactive = auto
   status = auto
 [diff]
-	tool = winmerge
-[difftool "winmerge"]
-	cmd = winmerge.sh \"$LOCAL\" \"$REMOTE\"
+        tool = p4merge
+[difftool "p4merge"]
+        cmd = p4merge.exe \\\"$BASE\\\" \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$MERGED\\\"
+
 [difftool]
-	prompt = false
+        prompt = false
 [core]
 	pager = less -E
+	whitespace = cr-at-eol
 [log]
 	decorate = full
+[merge]
+        tool = p4merge
+[mergetool "p4merge"]
+    cmd = "p4merge.exe $BASE $LOCAL $REMOTE $MERGED"
+    trustExitCode = true
+    keepBackup = false
+
+[mergetool]
+        keepBackup = false
